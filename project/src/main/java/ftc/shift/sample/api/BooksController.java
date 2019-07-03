@@ -1,6 +1,5 @@
 package ftc.shift.sample.api;
 
-
 import ftc.shift.sample.models.Book;
 import ftc.shift.sample.services.BookService;
 import io.swagger.annotations.Api;

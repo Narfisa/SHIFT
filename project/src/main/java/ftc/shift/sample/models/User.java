@@ -14,9 +14,8 @@ public class User {
     @ApiModelProperty(value = "Название изображения", required = true)
     public String image;
 
-    public User() {
+    public User(){
     }
-
     public User(String phone, String name, String image) {
         this.name = name;
         this.phone = phone;
@@ -35,7 +34,7 @@ public class User {
         return phone;
     }
 
-    public void setPhone(String author) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

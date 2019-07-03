@@ -17,11 +17,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> GetAll(){ return userRepository.getAll();    }
+    public List<User> getAll(){ return userRepository.getAll();    }
 
     public User getOne(String phone) { return userRepository.getOne(phone); }
 
-    public User update(String phone, String name, String image)  { return  userRepository.update(phone, name, image); }
+    public User update(String oldPhone, String phone, String name, String image)  { return  userRepository.update(oldPhone, phone, name, image); }
 
     public void delete(String phone){ userRepository.delete(phone);}
 

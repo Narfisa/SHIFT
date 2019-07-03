@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class UserQueries implements UserRepository{
 
-    private Integer count = 0;
+    private Integer count = -1;
     private List<User> Users = new ArrayList<>();
 
     @Autowired
@@ -35,17 +35,18 @@ public class UserQueries implements UserRepository{
     @Override
     public User getOne(String phone){
         for (User user : Users){
-            if (user.phone == phone)
+            if (user.phone.equals(phone))
                 return user;
         }
         throw new NotFoundException();
     }
 
     @Override
-    public User update(String phone, String name, String image){
+    public User update(String oldPhone, String phone, String name, String image){
         for (User user : Users){
-            if (user.phone == phone)
+            if (user.phone.equals(oldPhone))
             {
+                user.phone = phone;
                 user.name = name;
                 user.image = image;
                 return user;
@@ -58,7 +59,7 @@ public class UserQueries implements UserRepository{
     public void delete(String phone){
         boolean key = false;
         for (User user : Users){
-            if (user.phone == phone)
+            if (user.phone.equals(phone))
             {
                 key = true;
                 Users.remove(user);

@@ -11,7 +11,7 @@ public interface UserRepository {
 
     User getOne(String phone);
 
-    User update(String phone, String name, String image);
+    User update(String oldPhone, String phone, String name, String image);
 
     void delete(String phone);
 
