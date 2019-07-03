@@ -1,0 +1,23 @@
+CREATE TABLE Users(
+	[UserId] int PRIMARY KEY IDENTITY,
+	[Name] nvarchar(20) NOT NULL,
+	[Phone] varchar(11) NOT NULL UNIQUE,
+	[Image] nvarchar(20) NOT NULL,
+);
+
+CREATE TABLE Orders(
+	[OrderId] int PRIMARY KEY IDENTITY,
+	[FromAddress] nvarchar(150) NOT NULL,
+	[ToAddress] nvarchar(150) NOT NULL,
+	[Price] int NOT NULL,
+	[OrderTime] date NOT NULL,
+	[DeliveryTime] date NOT NULL,
+	[Status] char NOT NULL CHECK(Status IN('A', 'D', 'F', 'P')),
+	);
+
+CREATE TABLE OrderInfo(
+	[OrderId] integer IDENTITY FOREIGN KEY REFERENCES Orders(OrderId),
+	[CustomerId] integer FOREIGN KEY REFERENCES Users(UserID),
+	[CourierId] integer FOREIGN KEY REFERENCES Users(UserID),
+	PRIMARY KEY(OrderId, CustomerId, CourierId),
+);
