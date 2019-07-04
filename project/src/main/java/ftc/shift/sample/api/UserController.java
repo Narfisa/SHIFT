@@ -19,14 +19,14 @@ public class UserController {
     @Autowired
     private UserService UserService;
 
-    @RequestMapping(USER_PATH + "/getAll")
+    @GetMapping(USER_PATH + "/getAll")
     @ApiOperation(value = "Получение всех пользователей")
     public ResponseEntity<List<User>> getAll(){
         List<User> users = UserService.getAll();
         return ResponseEntity.ok(users);
     }
 
-    @RequestMapping(USER_PATH + "/get")
+    @GetMapping(USER_PATH + "/get")
     @ApiOperation(value = "Получение информации о пользователе по номеру телефона")
     public User getOne(@RequestParam(value = "phone", required = true) String phone){
         return UserService.getOne(phone);
@@ -52,16 +52,12 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    @DeleteMapping(USER_PATH + "/delete")
+    @DeleteMapping(USER_PATH + "/delete/{phone}")
     @ApiParam(value = "Удаление существующего пользователя")
     public ResponseEntity<?> delete(
             @ApiParam(value = "Номер телефона пользователя, которого нужно удалить")
-            @RequestHeader("phone") String phone) {
+            @PathVariable String phone) {
         UserService.delete(phone);
-        return ResponseEntity
-                .ok()
-                .build();
+        return ResponseEntity.ok().build();
     }
-
-
 }

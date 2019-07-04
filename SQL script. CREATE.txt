@@ -1,23 +1,23 @@
 CREATE TABLE Users(
-	[UserId] int PRIMARY KEY IDENTITY,
+	[Phone] varchar(11) PRIMARY KEY,
 	[Name] nvarchar(20) NOT NULL,
-	[Phone] varchar(11) NOT NULL UNIQUE,
-	[Image] nvarchar(20) NOT NULL,
+	[Image] nvarchar(50) NOT NULL,
 );
 
 CREATE TABLE Orders(
 	[OrderId] int PRIMARY KEY IDENTITY,
+	[CustomerPhone] nvarchar(11) NOT NULL FOREIGN KEY REFERENCES Users(Phone),
 	[FromAddress] nvarchar(150) NOT NULL,
 	[ToAddress] nvarchar(150) NOT NULL,
 	[Price] int NOT NULL,
-	[OrderTime] date NOT NULL,
 	[DeliveryTime] date NOT NULL,
-	[Status] char NOT NULL CHECK(Status IN('A', 'D', 'F', 'P')),
+	[OrderTime] date NOT NULL,
+	[Status] char NOT NULL CHECK(Status IN('A', 'D', 'F', 'P', 'W', 'C')),
 	);
 
-CREATE TABLE OrderInfo(
-	[OrderId] integer IDENTITY FOREIGN KEY REFERENCES Orders(OrderId),
-	[CustomerId] integer FOREIGN KEY REFERENCES Users(UserID),
-	[CourierId] integer FOREIGN KEY REFERENCES Users(UserID),
+CREATE TABLE Courier(
+	[OrderId] int IDENTITY FOREIGN KEY REFERENCES Orders(OrderId),
+	[CustomerPhone] int FOREIGN KEY REFERENCES Users(UserID),
+	Status char NOT NULL CHECK(Status IN('D', 'F', 'P', 'W', 'C')),
 	PRIMARY KEY(OrderId, CustomerId, CourierId),
 );
