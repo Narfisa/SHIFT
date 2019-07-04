@@ -58,15 +58,23 @@ public class UserQueries implements UserRepository{
     @Override
     public void delete(String phone){
         boolean key = false;
+        User deletingUser = null;
         for (User user : Users){
             if (user.phone.equals(phone))
             {
                 key = true;
-                Users.remove(user);
+                deletingUser = user;
+                break;
             }
         }
+
         if (!key)
             throw new NotFoundException();
+        else
+        {
+            --count;
+            Users.remove(deletingUser);
+        }
     }
 
     @Override

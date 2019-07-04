@@ -2,8 +2,6 @@ package ftc.shift.sample.models;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.List;
-
 public class User {
     @ApiModelProperty(value = "Номер телефона пользователя = уникальный идентификатор", required = true)
     public String phone;
