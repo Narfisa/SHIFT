@@ -19,8 +19,7 @@ public class OrderQueries implements OrderRepository{
 
     @Autowired
     public OrderQueries(){
-        String srtdate = "03-07-2019 16:15:00";
-        Date date = sdf.
+        Date date = sdf.for;
         Orders.add(++count, "from", "to", 200, sdf.parse("03-07-2019 16:15:00"));
     }
 }
