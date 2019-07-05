@@ -37,7 +37,7 @@ public class UserController {
     public ResponseEntity<User> create(
             @ApiParam(value = "Данные для нового пользователя (Номер телефона, имя, URL-адрес картинки)")
             @RequestBody User user){
-        User result = UserService.create(user.phone, user.name, user.image);
+        User result = UserService.create(user.phone, user.name);
         return ResponseEntity.ok(result);
     }
 
@@ -48,7 +48,7 @@ public class UserController {
             @RequestHeader("phone") String phone,
             @ApiParam(value = "Новые данные для пользователи (Номер телефона, имя, URL-адрес картинки)")
             @RequestBody User user) {
-        User updatedUser = UserService.update(phone, user.phone, user.name, user.image);
+        User updatedUser = UserService.update(phone, user.phone, user.name);
         return ResponseEntity.ok(updatedUser);
     }
 

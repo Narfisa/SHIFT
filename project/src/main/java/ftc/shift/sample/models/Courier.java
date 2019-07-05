@@ -1,7 +1,6 @@
 package ftc.shift.sample.models;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
 
 public class Courier {
     @ApiModelProperty(value = "ID взятого заказа")
